@@ -1,0 +1,10 @@
+*.git
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+.env
+.env.*
+Dockerfile
+cloudbuild.yaml
+README.md
