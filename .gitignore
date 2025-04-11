@@ -5,6 +5,6 @@ __pycache__
 *.pyd
 .env
 .env.*
-Dockerfile
+
 cloudbuild.yaml
 README.md

@@ -1,4 +1,5 @@
 from fastapi import FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from typing import List
 from smart_irrigation_ml.components.advisor import get_recommendations
@@ -25,6 +26,15 @@ app = FastAPI(
     title="Jambavantha Smart Irrigation API",
     description="Gives smart irrigation and fertilizer recommendations",
     version="1.0.0"
+)
+
+# ✅ Add this block
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["https://jambagrad.com"],  # 👈 Allow your frontend
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 @app.post("/get-recommendations")
