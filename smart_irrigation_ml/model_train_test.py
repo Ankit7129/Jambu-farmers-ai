@@ -10,23 +10,71 @@ import numpy as np
 
 # Extended dataset
 data = [
-    # Loamy/Clayey Soil
-    ["Loamy/Clayey", "Paddy", "Nursery", 20, 85, 35, 22, "DAP", 20, 20, 10, "1–2", "50–100", 2, "Transplant ready at 3-leaf stage"],
-    ["Loamy/Clayey", "Paddy", "Transplanting", 7, 90, 34, 24, "Urea + DAP", 40, 20, 10, "Continuous", "100–150", 3, "Flood irrigation is ideal"],
-    ["Loamy/Clayey", "Paddy", "Tillering", 30, 75, 32, 20, "Urea", 30, 10, 20, "3–4", "50–80", 2, "Encourages shoot multiplication"],
-    ["Loamy/Clayey", "Paddy", "Panicle Initiation", 20, 70, 30, 20, "DAP + MOP", 20, 30, 30, "3–4", "30–50", 2, "Avoid stress for yield"],
-    ["Loamy/Clayey", "Paddy", "Flowering", 15, 70, 29, 20, "Foliar N Spray", 10, 10, 10, "2", "40", 2, "Needs consistent moisture"],
-    ["Loamy/Clayey", "Paddy", "Grain Filling", 20, 60, 28, 18, "Potash", 5, 10, 25, "4–5", "30", 2, "Grain size development"],
-    ["Loamy/Clayey", "Paddy", "Maturity", 15, 50, 27, 16, "None", 0, 0, 0, "Stop", "<20", 1, "Drain field 10 days before harvest"],
-    # Alluvial Soil
-    ["Alluvial", "Paddy", "Nursery", 20, 85, 35, 22, "DAP", 20, 20, 10, "1–2", "60–110", 2, "Transplant ready at 3-leaf stage"],
-    ["Alluvial", "Paddy", "Transplanting", 7, 90, 34, 24, "Urea + DAP", 40, 20, 10, "Continuous", "120–160", 3, "Flood irrigation is ideal"],
-    ["Alluvial", "Paddy", "Tillering", 30, 75, 32, 20, "Urea", 30, 10, 20, "3–4", "60–90", 2, "Encourages shoot multiplication"],
-    ["Alluvial", "Paddy", "Panicle Initiation", 20, 70, 30, 20, "DAP + MOP", 20, 30, 30, "3–4", "40–60", 2, "Avoid stress for yield"],
-    ["Alluvial", "Paddy", "Flowering", 15, 70, 29, 20, "Foliar N Spray", 10, 10, 10, "2", "50", 2, "Needs consistent moisture"],
-    ["Alluvial", "Paddy", "Grain Filling", 20, 60, 28, 18, "Potash", 5, 10, 25, "4–5", "40", 2, "Grain size development"],
-    ["Alluvial", "Paddy", "Maturity", 15, 50, 27, 16, "None", 0, 0, 0, "Stop", "<30", 1, "Drain field 10 days before harvest"],
-]
+        # Loamy/Clayey Soil - Paddy (Complete growth cycle)
+        ["Loamy/Clayey", "Paddy", "Nursery", 21, 85, 35, 22, "DAP", 20, 20, 10, "1-2", "50-100", 2, "Transplant ready at 3-leaf stage"],
+        ["Loamy/Clayey", "Paddy", "Land Preparation", 7, 90, 34, 23, "Farmyard Manure", 0, 0, 0, "Flooding", "100-150", 3, "Puddle the field"],
+        ["Loamy/Clayey", "Paddy", "Transplanting", 25, 85, 34, 24, "Urea + DAP", 40, 20, 10, "Continuous", "100-150", 3, "Maintain 5cm standing water"],
+        ["Loamy/Clayey", "Paddy", "Tillering", 30, 75, 32, 20, "Urea", 30, 10, 20, "3-4", "50-80", 2, "Encourages shoot multiplication"],
+        ["Loamy/Clayey", "Paddy", "Stem Elongation", 15, 80, 33, 21, "NPK", 25, 25, 25, "4-5", "60-90", 2, "Critical growth phase"],
+        ["Loamy/Clayey", "Paddy", "Panicle Initiation", 20, 70, 30, 20, "DAP + MOP", 20, 30, 30, "3-4", "30-50", 2, "Critical yield stage"],
+        ["Loamy/Clayey", "Paddy", "Flowering", 15, 70, 29, 20, "2% Urea Spray", 10, 10, 10, "2", "40", 2, "Avoid water stress"],
+        ["Loamy/Clayey", "Paddy", "Grain Filling", 20, 60, 28, 18, "Potash", 5, 10, 25, "4-5", "50-80", 2, "Grain size development"],
+        ["Loamy/Clayey", "Paddy", "Maturity", 15, 50, 27, 16, "None", 0, 0, 0, "Stop", "<20", 1, "Drain field completely"],
+        ["Loamy/Clayey", "Paddy", "Harvest", 7, 40, 30, 15, "None", 0, 0, 0, "None", "Any", 0, "Grains at 20-22% moisture"],
+
+        # Alluvial Soil - Paddy (Complete growth cycle)
+        ["Alluvial", "Paddy", "Nursery", 21, 85, 35, 22, "DAP", 20, 20, 10, "1-2", "60-110", 2, "Transplant ready at 3-leaf stage"],
+        ["Alluvial", "Paddy", "Land Preparation", 7, 90, 34, 23, "Compost", 0, 5, 5, "Flooding", "120-170", 3, "Puddle the field thoroughly"],
+        ["Alluvial", "Paddy", "Transplanting", 25, 85, 34, 24, "Urea + DAP", 40, 20, 10, "Continuous", "120-160", 3, "Maintain 5cm standing water"],
+        ["Alluvial", "Paddy", "Tillering", 30, 75, 32, 20, "Urea", 30, 10, 20, "3-4", "60-90", 2, "Encourages shoot multiplication"],
+        ["Alluvial", "Paddy", "Stem Elongation", 15, 80, 33, 21, "NPK", 25, 25, 25, "4-5", "70-100", 2, "Critical growth phase"],
+        ["Alluvial", "Paddy", "Panicle Initiation", 20, 70, 30, 20, "DAP + MOP", 20, 30, 30, "3-4", "40-60", 2, "Critical yield stage"],
+        ["Alluvial", "Paddy", "Flowering", 15, 70, 29, 20, "2% Urea Spray", 10, 10, 10, "2", "50", 2, "Avoid water stress"],
+        ["Alluvial", "Paddy", "Grain Filling", 20, 60, 28, 18, "Potash", 5, 10, 25, "4-5", "50-80", 2, "Grain size development"],
+        ["Alluvial", "Paddy", "Maturity", 15, 50, 27, 16, "None", 0, 0, 0, "Stop", "<30", 1, "Drain field completely"],
+        ["Alluvial", "Paddy", "Harvest", 7, 40, 30, 15, "None", 0, 0, 0, "None", "Any", 0, "Grains at 20-22% moisture"],
+
+        # Loamy Soil - Wheat (Complete growth cycle)
+        ["Loamy", "Wheat", "Land Preparation", 14, 60, 25, 15, "Farmyard Manure", 0, 0, 0, "Pre-sowing", "30-50", 2, "Fine tilth required"],
+        ["Loamy", "Wheat", "Germination", 10, 70, 25, 18, "DAP", 20, 20, 0, "7-10", "30-50", 2, "Maintain moist topsoil"],
+        ["Loamy", "Wheat", "Tillering", 30, 65, 22, 15, "Urea", 50, 0, 0, "14-21", "40-60", 2, "Critical for shoot count"],
+        ["Loamy", "Wheat", "Stem Extension", 35, 70, 25, 12, "Urea + MOP", 30, 0, 20, "10-14", "50-70", 2, "Avoid water logging"],
+        ["Loamy", "Wheat", "Booting", 10, 75, 27, 14, "NPK", 20, 20, 20, "7-10", "40-50", 2, "Head formation begins"],
+        ["Loamy", "Wheat", "Heading", 15, 65, 28, 15, "NPK", 20, 20, 20, "10", "30-40", 1, "Sensitive to drought"],
+        ["Loamy", "Wheat", "Flowering", 10, 70, 30, 16, "Boron Spray", 0, 0, 0, "7", "20-30", 1, "Critical pollination stage"],
+        ["Loamy", "Wheat", "Grain Filling", 30, 60, 30, 18, "Potash", 0, 0, 25, "12-15", "40-50", 1, "Reduce irrigation gradually"],
+        ["Loamy", "Wheat", "Maturity", 20, 50, 32, 20, "None", 0, 0, 0, "Stop", "<20", 0, "Grains hard, moisture <15%"],
+        ["Loamy", "Wheat", "Harvest", 7, 40, 35, 22, "None", 0, 0, 0, "None", "Any", 0, "Timely harvest prevents shattering"],
+
+        # Black Soil - Cotton (Complete growth cycle)
+        ["Black", "Cotton", "Land Preparation", 21, 60, 35, 25, "Compost", 0, 0, 0, "Pre-sowing", "50-70", 2, "Deep ploughing beneficial"],
+        ["Black", "Cotton", "Germination", 14, 70, 38, 26, "DAP", 20, 20, 0, "5-7", "40-60", 2, "Avoid crust formation"],
+        ["Black", "Cotton", "Seedling", 21, 65, 40, 28, "Urea", 30, 0, 0, "7-10", "50-70", 2, "Critical establishment phase"],
+        ["Black", "Cotton", "Square Formation", 35, 70, 38, 26, "Urea + MOP", 40, 0, 20, "10-14", "60-80", 2, "Bud development stage"],
+        ["Black", "Cotton", "Flowering", 28, 75, 35, 24, "NPK", 30, 20, 30, "7-10", "70-90", 3, "Peak water requirement"],
+        ["Black", "Cotton", "Boll Development", 42, 70, 33, 22, "Potash", 0, 0, 40, "14-21", "60-80", 2, "Most critical yield stage"],
+        ["Black", "Cotton", "Boll Maturation", 35, 60, 32, 20, "None", 0, 0, 0, "21", "30-50", 1, "Reduce irrigation"],
+        ["Black", "Cotton", "Harvest", 60, 50, 30, 18, "None", 0, 0, 0, "None", "Any", 0, "Staggered picking as bolls open"],
+
+        # Sandy Loam - Sugarcane (Complete growth cycle)
+        ["Sandy Loam", "Sugarcane", "Land Preparation", 30, 70, 35, 24, "Farmyard Manure", 0, 0, 0, "Pre-planting", "80-100", 2, "Deep ploughing required"],
+        ["Sandy Loam", "Sugarcane", "Germination", 45, 75, 38, 26, "DAP", 30, 30, 0, "7-10", "100-120", 3, "Critical establishment phase"],
+        ["Sandy Loam", "Sugarcane", "Tillering", 90, 80, 40, 28, "Urea", 60, 0, 0, "10-14", "120-150", 3, "Maximize shoot population"],
+        ["Sandy Loam", "Sugarcane", "Grand Growth", 120, 85, 42, 30, "NPK", 80, 40, 40, "7-10", "150-200", 3, "Peak growth period"],
+        ["Sandy Loam", "Sugarcane", "Maturity", 60, 70, 35, 24, "Potash", 0, 0, 50, "14-21", "100-120", 2, "Sugar accumulation phase"],
+        ["Sandy Loam", "Sugarcane", "Ripening", 30, 60, 32, 22, "None", 0, 0, 0, "21", "50-70", 1, "Withhold irrigation"],
+        ["Sandy Loam", "Sugarcane", "Harvest", 7, 50, 30, 20, "None", 0, 0, 0, "None", "Any", 0, "Optimum sucrose content"],
+
+        # Red Soil - Groundnut (Complete growth cycle)
+        ["Red", "Groundnut", "Land Preparation", 14, 65, 35, 25, "Compost", 0, 0, 0, "Pre-sowing", "40-60", 2, "Fine tilth important"],
+        ["Red", "Groundnut", "Germination", 10, 70, 38, 26, "DAP", 20, 20, 0, "5-7", "50-70", 2, "Avoid water logging"],
+        ["Red", "Groundnut", "Vegetative", 30, 75, 40, 28, "Urea", 30, 0, 0, "7-10", "60-80", 2, "Foliage development"],
+        ["Red", "Groundnut", "Flowering", 20, 80, 38, 26, "NPK", 30, 30, 30, "5-7", "70-90", 2, "Peg formation begins"],
+        ["Red", "Groundnut", "Pegging", 30, 80, 35, 24, "Gypsum", 0, 30, 0, "7", "80-100", 2, "Critical calcium requirement"],
+        ["Red", "Groundnut", "Pod Development", 40, 75, 33, 22, "Potash", 0, 0, 40, "10-14", "70-90", 2, "Most water-sensitive stage"],
+        ["Red", "Groundnut", "Maturity", 20, 60, 32, 20, "None", 0, 0, 0, "Stop", "30-50", 1, "Reduce irrigation"],
+        ["Red", "Groundnut", "Harvest", 7, 50, 30, 18, "None", 0, 0, 0, "None", "Any", 0, "Pod moisture 25-30%"]
+    ]
 
 columns = [
     "Soil Type", "Crop", "Stage", "Duration", "Ideal Moisture",
@@ -35,29 +83,212 @@ columns = [
 ]
 
 df = pd.DataFrame(data, columns=columns)
-
 class CropRequirements:
     def __init__(self, df):
         self.df = df
         self.requirements_cache = {}
+        self.similarity_threshold = 0.7  # Threshold for considering matches similar
         
     def get_requirements(self, soil_type, crop, stage):
-        """Get ideal requirements for given soil type, crop and stage"""
-        cache_key = f"{soil_type}_{crop}_{stage}"
-        if cache_key in self.requirements_cache:
-            return self.requirements_cache[cache_key]
+        """Get ideal requirements for given soil type, crop and stage with flexible matching"""
+        if not all([soil_type, crop, stage]):
+            raise ValueError("All parameters (soil_type, crop, stage) must be provided")
             
-        mask = ((self.df['Soil Type'] == soil_type) & 
-                (self.df['Crop'] == crop) & 
-                (self.df['Stage'] == stage))
+        try:
+            cache_key = f"{soil_type}_{crop}_{stage}"
+            if cache_key in self.requirements_cache:
+                return self.requirements_cache[cache_key]
                 
-        result = self.df[mask].iloc[0].to_dict() if any(mask) else None
-        
-        if result:
-            self.requirements_cache[cache_key] = result
-            return result
-        else:
-            raise ValueError(f"No data found for {soil_type}, {crop}, {stage}")
+            # Validate input types
+            if not isinstance(soil_type, str) or not isinstance(crop, str) or not isinstance(stage, str):
+                raise TypeError("All parameters must be strings")
+            
+            # Try exact match first
+            exact_match = self._get_exact_match(soil_type, crop, stage)
+            if exact_match:
+                self.requirements_cache[cache_key] = exact_match
+                return exact_match
+                
+            # If no exact match, find closest matches with warnings
+            closest_match, match_type = self._find_closest_match(soil_type, crop, stage)
+            
+            if closest_match:
+                # Add warning note about the approximation
+                closest_match['Notes'] = f"Approximate recommendation ({match_type}). {closest_match.get('Notes', '')}"
+                closest_match['IsApproximate'] = True
+                closest_match['OriginalRequest'] = {
+                    'soil_type': soil_type,
+                    'crop': crop,
+                    'stage': stage
+                }
+                self.requirements_cache[cache_key] = closest_match
+                return closest_match
+                
+            # If nothing found at all
+            available_combinations = self._get_available_combinations()
+            raise ValueError(
+                f"No data found for {soil_type}/{crop}/{stage} and no suitable approximations available.\n"
+                f"Available soil types: {available_combinations['soils']}\n"
+                f"Available crops: {available_combinations['crops']}\n"
+                f"Available stages: {available_combinations['stages']}"
+            )
+            
+        except Exception as e:
+            # Log the error for debugging (in a real system you'd use logging)
+            print(f"Error in get_requirements: {str(e)}")
+            raise ValueError(
+                f"Could not process request for {soil_type}/{crop}/{stage}. "
+                f"Please verify your inputs and try again. Error: {str(e)}"
+            )
+    
+    def _get_exact_match(self, soil_type, crop, stage):
+        """Check for exact match in dataset"""
+        try:
+            mask = ((self.df['Soil Type'].str.lower() == soil_type.lower()) & 
+                    (self.df['Crop'].str.lower() == crop.lower()) & 
+                    (self.df['Stage'].str.lower() == stage.lower()))
+            if any(mask):
+                return self.df[mask].iloc[0].to_dict()
+            return None
+        except Exception as e:
+            raise ValueError(f"Error searching for exact match: {str(e)}")
+    
+    def _find_closest_match(self, soil_type, crop, stage):
+        """Find the closest matching record with flexible matching"""
+        try:
+            strategies = [
+                ('similar_soil_crop_stage', self._match_similar_soil_crop_stage),
+                ('same_crop_stage', self._match_same_crop_stage),
+                ('same_crop_common_stage', self._match_same_crop_common_stage),
+                ('similar_crop', self._match_similar_crop),
+            ]
+            
+            for match_type, strategy in strategies:
+                try:
+                    result = strategy(soil_type, crop, stage)
+                    if result:
+                        return result, match_type
+                except Exception as e:
+                    print(f"Warning: Strategy {match_type} failed: {str(e)}")
+                    continue
+                    
+            return None, None
+        except Exception as e:
+            raise ValueError(f"Error in closest match search: {str(e)}")
+    
+    def _match_similar_soil_crop_stage(self, soil_type, crop, stage):
+        """Match with similar soil type (if soil is the only mismatch)"""
+        try:
+            crop_stage_mask = ((self.df['Crop'].str.lower() == crop.lower()) & 
+                             (self.df['Stage'].str.lower() == stage.lower()))
+            
+            if any(crop_stage_mask):
+                available_soils = self.df[crop_stage_mask]['Soil Type'].unique()
+                closest_soil = self._find_closest_soil(soil_type, available_soils)
+                
+                if closest_soil:
+                    mask = crop_stage_mask & (self.df['Soil Type'] == closest_soil)
+                    return self.df[mask].iloc[0].to_dict()
+            return None
+        except Exception as e:
+            raise ValueError(f"Error in similar soil matching: {str(e)}")
+    
+    def _match_same_crop_stage(self, soil_type, crop, stage):
+        """Match same crop and stage, any soil"""
+        try:
+            mask = ((self.df['Crop'].str.lower() == crop.lower()) & 
+                   (self.df['Stage'].str.lower() == stage.lower()))
+            if any(mask):
+                return self.df[mask].iloc[0].to_dict()
+            return None
+        except Exception as e:
+            raise ValueError(f"Error in same crop/stage matching: {str(e)}")
+    
+    def _match_same_crop_common_stage(self, soil_type, crop, stage):
+        """Match same crop with its most common stage"""
+        try:
+            mask = (self.df['Crop'].str.lower() == crop.lower())
+            if any(mask):
+                available_stages = self.df[mask]['Stage'].unique()
+                closest_stage = self._find_closest_stage(stage, available_stages)
+                
+                if closest_stage:
+                    mask = mask & (self.df['Stage'].str.lower() == closest_stage.lower())
+                    return self.df[mask].iloc[0].to_dict()
+            return None
+        except Exception as e:
+            raise ValueError(f"Error in same crop/common stage matching: {str(e)}")
+    
+    def _match_similar_crop(self, soil_type, crop, stage):
+        """Match with similar crop (last resort)"""
+        try:
+            available_crops = self.df['Crop'].unique()
+            closest_crop = self._find_closest_crop(crop, available_crops)
+            
+            if closest_crop:
+                return self._match_same_crop_common_stage(soil_type, closest_crop, stage)
+            return None
+        except Exception as e:
+            raise ValueError(f"Error in similar crop matching: {str(e)}")
+    
+    def _find_closest_soil(self, target_soil, available_soils):
+        """Find most similar soil type using string similarity"""
+        try:
+            from difflib import get_close_matches
+            matches = get_close_matches(
+                target_soil.lower(),
+                [s.lower() for s in available_soils],
+                n=1,
+                cutoff=self.similarity_threshold
+            )
+            if matches:
+                # Return original case version
+                return next(s for s in available_soils if s.lower() == matches[0])
+            return None
+        except Exception as e:
+            raise ValueError(f"Error finding closest soil: {str(e)}")
+    
+    def _find_closest_stage(self, target_stage, available_stages):
+        """Find most similar growth stage"""
+        try:
+            from difflib import get_close_matches
+            matches = get_close_matches(
+                target_stage.lower(),
+                [s.lower() for s in available_stages],
+                n=1,
+                cutoff=self.similarity_threshold
+            )
+            if matches:
+                # Return original case version
+                return next(s for s in available_stages if s.lower() == matches[0])
+            return None
+        except Exception as e:
+            raise ValueError(f"Error finding closest stage: {str(e)}")
+    
+    def _find_closest_crop(self, target_crop, available_crops):
+        """Find most similar crop"""
+        try:
+            from difflib import get_close_matches
+            matches = get_close_matches(
+                target_crop.lower(),
+                [c.lower() for c in available_crops],
+                n=1,
+                cutoff=self.similarity_threshold
+            )
+            if matches:
+                # Return original case version
+                return next(c for c in available_crops if c.lower() == matches[0])
+            return None
+        except Exception as e:
+            raise ValueError(f"Error finding closest crop: {str(e)}")
+    
+    def _get_available_combinations(self):
+        """Get lists of available options for helpful error messages"""
+        return {
+            'soils': sorted(self.df['Soil Type'].unique()),
+            'crops': sorted(self.df['Crop'].unique()),
+            'stages': sorted(self.df['Stage'].unique())
+        }
 
 # Feature Engineering
 def preprocess_data(df, current_moisture, current_n, current_p, current_k):
@@ -259,9 +490,9 @@ advisor = IrrigationAdvisor(crop_reqs)
 
 # Field data input - now only needs current conditions and identifiers
 field_data = {
-    "Soil Type": "Alluvial",
-    "Crop": "Paddy",
-    "Stage": "Panicle Initiation",
+    "Soil Type": "R",
+    "Crop": "Gr",
+    "Stage": "kmk",
     "Current Moisture": 40,  # Actual field measurement
     "Current N": 10,  # Soil test results
     "Current P": 12,
@@ -286,6 +517,7 @@ print(f"Ideal moisture: {recommendations['irrigation']['ideal_moisture']}")
 print(f"Irrigation needed: {'Yes' if recommendations['irrigation']['needed'] else 'No'}")
 print(f"Recommended amount: {recommendations['irrigation']['recommended_amount']:.1f}mm")
 print(f"Upcoming rain: {'Yes' if recommendations['irrigation']['consider_rain'] else 'No'}")
+print(f"Final advice: {recommendations['irrigation']['final_recommendation']}")
 print(f"Final advice: {recommendations['irrigation']['final_recommendation']}")
 
 print("\n=== Fertilizer Recommendation ===")
