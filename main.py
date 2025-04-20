@@ -1,10 +1,10 @@
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from typing import Dict, List, Optional
 import os
-import requests
 import json
+import requests
 from dotenv import load_dotenv
 
 # Load environment variables from .env
@@ -16,6 +16,22 @@ if not GEMINI_API_KEY:
     raise RuntimeError("Gemini API Key not found in environment!")
 
 GEMINI_URL = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key={GEMINI_API_KEY}"
+
+# Initialize FastAPI app
+app = FastAPI(
+    title="Jambavantha Smart Irrigation API",
+    description="Gives smart irrigation and fertilizer recommendations",
+    version="1.0.0",
+)
+
+# Enable CORS for all origins
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=False,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # Pydantic models
 class FieldData(BaseModel):
@@ -37,22 +53,6 @@ class InputData(BaseModel):
     weather_forecast: List[WeatherData]
     language: Optional[str] = "hindi"
 
-# Initialize FastAPI app
-app = FastAPI(
-    title="Jambavantha Smart Irrigation API",
-    description="Gives smart irrigation and fertilizer recommendations",
-    version="1.0.0",
-)
-
-# Enable CORS for all origins
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=False,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
-
 # Advisor class
 class GeminiAdvisor:
     def __init__(self):
@@ -68,7 +68,7 @@ Always respond in JSON format exactly matching this structure:
         "notes": "",
         "success": true
     },
-    "recommendatio   ns": {
+    "recommendations": {
         "irrigation": {
             "current": float,
             "ideal": float,
