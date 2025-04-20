@@ -18,7 +18,8 @@ COPY . .
 
 # Set default port (Cloud Run will override with $PORT)
 ENV PORT=8080
+ENV HOST=0.0.0.0
 
 # Run with Gunicorn for production stability
 RUN pip install gunicorn
-CMD exec gunicorn --bind :$PORT --workers 1 --worker-class uvicorn.workers.UvicornWorker --timeout 240 main:app
+CMD exec gunicorn --bind $HOST:$PORT --workers 1 --worker-class uvicorn.workers.UvicornWorker --timeout 240 main:app
