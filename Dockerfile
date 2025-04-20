@@ -1,19 +1,24 @@
-# Dockerfile
-FROM python:3.10-slim
+# Use Python 3.10 with slim-buster for better compatibility
+FROM python:3.10-slim-buster
 
-# Set working directory
 WORKDIR /app
 
-# Install dependencies first for better caching
+# Install system dependencies first
+RUN apt-get update && apt-get install -y \
+    gcc \
+    python3-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install Python dependencies
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy the rest of the app
+# Copy application
 COPY . .
 
-# Expose the port FastAPI will run on
-EXPOSE 8000
+# Set default port (Cloud Run will override with $PORT)
+ENV PORT=8080
 
-# Run the FastAPI app with uvicorn
-# Use PORT environment variable and multiple workers
-CMD ["sh", "-c", "uvicorn main:app --host 0.0.0.0 --port ${PORT:-8000}"]
+# Run with Gunicorn for production stability
+RUN pip install gunicorn
+CMD exec gunicorn --bind :$PORT --workers 1 --worker-class uvicorn.workers.UvicornWorker --timeout 240 main:app
