@@ -41,7 +41,7 @@ class InputData(BaseModel):
 app = FastAPI(
     title="Jambavantha Smart Irrigation API",
     description="Gives smart irrigation and fertilizer recommendations",
-    version="1.0.0"
+    version="1.0.0",
 )
 
 # Enable CORS for all origins
